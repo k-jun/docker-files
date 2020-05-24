@@ -1,0 +1,8 @@
+version: "3.3"
+services:
+  nginx:
+    ports:
+      - "8000:80"
+    image: nginx
+    volumes:
+      - ./nginx-dev.conf:/etc/nginx/nginx.conf
