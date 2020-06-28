@@ -14,8 +14,9 @@ COPY . .
 # ENV DB_NAME="mysqldb"
 # ENV REDIS_ENDPOINT="host.docker.internal:6379"
 
-# ENTRYPOINT ["go", "run", "main.go"]
 RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o app
+RUN groupadd -r app && useradd --no-log-init -r -g app appuser
+USER appuser
 
 FROM alpine:3.11
 COPY --from=builder /app/app /bin/app
