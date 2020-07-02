@@ -5,4 +5,4 @@ services:
       - "8000:80"
     image: nginx
     volumes:
-      - ./nginx-dev.conf:/etc/nginx/nginx.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf
