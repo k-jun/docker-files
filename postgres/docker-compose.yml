@@ -10,6 +10,7 @@ services:
     environment:
       POSTGRES_PASSWORD: "password"
       POSTGRES_USER: "root"
+      POSTGRES_DB: "postgresdb"
 
 volumes:
   postgres-data:
