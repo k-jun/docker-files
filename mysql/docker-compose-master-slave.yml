@@ -1,12 +1,12 @@
 version: '3'
 services:
   mysql-master:
-    image: mysql:8.0.16
+    image: mysql:5.6
     ports:
           - 3306:3306
     volumes:
       # - ./master-scripts/:/docker-entrypoint-initdb.d/
-      - ./master.conf:/etc/mysql/conf.d/mysql.cnf
+      # - ./master.conf:/etc/mysql/conf.d/mysql.cnf
       - mysql-data:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: dena
@@ -14,14 +14,14 @@ services:
       MYSQL_PASSWORD: dena
       MYSQL_DATABASE: openchat
   mysql-slave:
-    image: mysql:8.0.16
+    image: mysql:5.7
     depends_on:
       - mysql-master
     ports:
           - 3307:3306
-    volumes:
-      - ./slave-scripts/:/docker-entrypoint-initdb.d/
-      - ./slave.conf:/etc/mysql/conf.d/mysql.cnf
+    # volumes:
+      # - ./slave-scripts/:/docker-entrypoint-initdb.d/
+      # - ./slave.conf:/etc/mysql/conf.d/mysql.cnf
     environment:
       MYSQL_ROOT_PASSWORD: dena
       MYSQL_USER: dena
@@ -30,4 +30,4 @@ services:
 volumes:
   mysql-data:
     external:
-      name: mysql_volume
+      name: mysql-volume
