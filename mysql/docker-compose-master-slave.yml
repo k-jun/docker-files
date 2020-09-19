@@ -27,7 +27,8 @@ services:
       MYSQL_USER: dena
       MYSQL_PASSWORD: dena
       MYSQL_DATABASE: openchat
-volumes:
-  mysql-data:
-    external:
-      name: mysql-volume
+
+# volumes:
+#   mysql-data:
+#     external:
+#       name: mysql-volume
