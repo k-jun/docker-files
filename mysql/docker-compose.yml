@@ -6,7 +6,6 @@ services:
       - 3306:3306
     volumes:
       - ./my.cnf:/etc/mysql/conf.d/my.cnf
-      - ./log/:/var/log/mysql/
     #   - mysql-data:/var/lib/mysql
     #   - ./scripts:/docker-entrypoint-initdb.d
     environment:
