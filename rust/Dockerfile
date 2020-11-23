@@ -1,19 +1,18 @@
-FROM rust:1.43 AS builder
+FROM rust:1.46 AS builder
 
-WORKDIR /todo
+WORKDIR /app
 
 COPY Cargo.toml Cargo.toml
-
-RUN mkdir src && echo "fn main() {}" > src/main.rs
+COPY Cargo.lock Cargo.lock
 RUN cargo build --release
 
 COPY ./src ./src
 COPY ./templates ./templates
 
-RUN rm -f target/release/deps/todo*
 RUN cargo build --release
-
+RUN strip ./target/release/poinsettia
 
 FROM alpine:3.11
-COPY --from=builder /todo/target/release/todo /bin/app
-ENTRYPOINT ["/bin/app"]
+COPY --from=builder /app/target/release/poinsettia /bin/poinsettia
+ENTRYPOINT ["/bin/poinsettia"]
+
